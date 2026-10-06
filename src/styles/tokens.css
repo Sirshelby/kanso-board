@@ -1,0 +1,102 @@
+/*
+ * Design tokens. Light theme by default; dark when the system asks for it
+ * (unless the person picked light) or when they pick dark explicitly.
+ */
+:root {
+  color-scheme: light;
+  --paper: #ebeeea;
+  --surface: #fafbf9;
+  --ink: #1c2b27;
+  --ink-soft: #3f4f49;
+  --muted: #5e6e68;
+  --line: #cfd7d2;
+  --line-strong: #a9b5af;
+  --hover: rgb(28 43 39 / 0.06);
+
+  --accent: #3546d6;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(53 70 214 / 0.16);
+  --drop-tint: rgb(53 70 214 / 0.06);
+  --mark: #d6dbfb;
+  --logo-accent: #8e9bff;
+
+  --p-low: #8a9993;
+  --p-medium: #3546d6;
+  --p-high: #c27c0e;
+  --p-urgent: #c8372d;
+
+  --warn: #d4920f;
+  --warn-ink: #8a5300;
+  --danger: #b42f25;
+  --ok: #2a7150;
+
+  --shadow-lift: 0 22px 40px -14px rgb(28 43 39 / 0.38), 0 6px 12px -6px rgb(28 43 39 / 0.22);
+  --shadow-modal: 0 30px 70px -20px rgb(28 43 39 / 0.45);
+  --backdrop: rgb(18 25 23 / 0.42);
+
+  --radius-card: 6px;
+  --radius-control: 8px;
+  --radius-panel: 14px;
+
+  --font: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --paper: #121917;
+    --surface: #1d2724;
+    --ink: #e4ebe7;
+    --ink-soft: #c2cdc7;
+    --muted: #93a29c;
+    --line: #2e3a36;
+    --line-strong: #4a5953;
+    --hover: rgb(228 235 231 / 0.07);
+    --accent: #8e9bff;
+    --accent-ink: #10162e;
+    --accent-soft: rgb(142 155 255 / 0.2);
+    --drop-tint: rgb(142 155 255 / 0.07);
+    --mark: #343f7d;
+    --logo-accent: #3546d6;
+    --p-low: #7f8f89;
+    --p-medium: #8e9bff;
+    --p-high: #e3a541;
+    --p-urgent: #f27a6c;
+    --warn: #e3a541;
+    --warn-ink: #f0c172;
+    --danger: #f27a6c;
+    --ok: #6fcf9c;
+    --shadow-lift: 0 22px 44px -12px rgb(0 0 0 / 0.65), 0 6px 14px -6px rgb(0 0 0 / 0.5);
+    --shadow-modal: 0 30px 70px -20px rgb(0 0 0 / 0.7);
+    --backdrop: rgb(4 8 7 / 0.6);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #121917;
+  --surface: #1d2724;
+  --ink: #e4ebe7;
+  --ink-soft: #c2cdc7;
+  --muted: #93a29c;
+  --line: #2e3a36;
+  --line-strong: #4a5953;
+  --hover: rgb(228 235 231 / 0.07);
+  --accent: #8e9bff;
+  --accent-ink: #10162e;
+  --accent-soft: rgb(142 155 255 / 0.2);
+  --drop-tint: rgb(142 155 255 / 0.07);
+  --mark: #343f7d;
+  --logo-accent: #3546d6;
+  --p-low: #7f8f89;
+  --p-medium: #8e9bff;
+  --p-high: #e3a541;
+  --p-urgent: #f27a6c;
+  --warn: #e3a541;
+  --warn-ink: #f0c172;
+  --danger: #f27a6c;
+  --ok: #6fcf9c;
+  --shadow-lift: 0 22px 44px -12px rgb(0 0 0 / 0.65), 0 6px 14px -6px rgb(0 0 0 / 0.5);
+  --shadow-modal: 0 30px 70px -20px rgb(0 0 0 / 0.7);
+  --backdrop: rgb(4 8 7 / 0.6);
+}

@@ -1,0 +1,140 @@
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  padding: 14px 20px 6px;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  height: 36px;
+  padding: 0 6px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--muted);
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+
+.search-field:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.search-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--ink);
+}
+
+.search-field input::placeholder {
+  color: var(--muted);
+}
+
+.search-field:focus-within .search-key,
+.search-field:has(input:not(:placeholder-shown)) .search-key {
+  display: none;
+}
+
+@media (hover: none) {
+  .search-key {
+    display: none;
+  }
+}
+
+.chip-scroll {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  padding: 3px;
+  margin: -3px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chip-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.chip-group {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.chip:hover {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.chip[aria-pressed='true'] .priority-glyph .off {
+  fill: color-mix(in srgb, var(--paper) 30%, transparent);
+}
+
+.chip-divider {
+  flex: none;
+  width: 1px;
+  height: 18px;
+  background: var(--line-strong);
+}
+
+.filter-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+
+.filter-summary:empty {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .filter-bar {
+    padding: 10px 14px 4px;
+  }
+  .search-field {
+    width: 100%;
+  }
+  @media (hover: none) {
+  .search-key {
+    display: none;
+  }
+}
+
+.chip-scroll {
+    flex-basis: 100%;
+  }
+}

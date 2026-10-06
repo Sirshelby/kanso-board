@@ -1,0 +1,242 @@
+.board-scroller {
+  /* Positioned so visually hidden text inside columns can't widen the page. */
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  padding: 10px 20px 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
+
+.board {
+  --col-min: 272px;
+  --gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(var(--column-count), minmax(var(--col-min), 1fr));
+  gap: var(--gap);
+  height: 100%;
+  min-width: calc(var(--column-count) * var(--col-min) + (var(--column-count) - 1) * var(--gap));
+}
+
+.column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 10px;
+  transition: background-color 0.15s;
+}
+
+.column[data-drop-target] {
+  background: var(--drop-tint);
+}
+
+.column-header {
+  padding: 0 4px 10px;
+}
+
+/*
+ * The column's top rule is also its work-in-progress meter: one segment per slot
+ * when a limit is set, a solid rule when it isn't, hatched once the limit is passed.
+ */
+.meter {
+  display: flex;
+  gap: 3px;
+  height: 6px;
+  margin-bottom: 11px;
+  border-radius: 2px;
+}
+
+.meter-seg {
+  flex: 1;
+  border-radius: 2px;
+  background: var(--line);
+  transition: background-color 0.2s;
+}
+
+.meter-seg.is-on {
+  background: var(--ink);
+}
+
+.meter[data-over] {
+  background: repeating-linear-gradient(-45deg, var(--warn) 0 3px, transparent 3px 6px);
+  box-shadow: inset 0 0 0 1px var(--warn);
+}
+
+.meter[data-over] .meter-seg {
+  background: transparent;
+}
+
+.column-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 28px;
+}
+
+.column-title {
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.012em;
+}
+
+.column-count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-right: -6px;
+  padding: 3px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+button.column-count:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.count-value {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.count-limit {
+  font-size: 13px;
+}
+
+.column[data-over-limit] .count-value {
+  color: var(--warn-ink);
+}
+
+.limit-input {
+  width: 76px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  outline: none;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.limit-warning {
+  margin-top: 4px;
+  color: var(--warn-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.column-list {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 56px;
+  margin: 0;
+  padding: 3px 4px 8px;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.drop-placeholder {
+  flex: none;
+  height: var(--drag-height, 64px);
+  border: 1.5px dashed var(--accent);
+  border-radius: var(--radius-card);
+  background: var(--accent-soft);
+  opacity: 0.7;
+}
+
+.column-empty {
+  padding: 18px 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-card);
+  color: var(--muted);
+  font-size: 13.5px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.column-footer {
+  flex: none;
+  padding: 0 4px 4px;
+}
+
+.quick-add-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.quick-add-trigger:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.quick-add input {
+  width: 100%;
+  height: 40px;
+  padding: 0 11px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-card);
+  outline: none;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.quick-add-hint {
+  margin: 7px 2px 2px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.quick-add-hint kbd {
+  font-size: 11.5px;
+}
+
+.drag-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (max-width: 720px) {
+  .board-scroller {
+    padding: 6px 14px 12px;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 14px;
+  }
+  .board {
+    --col-min: min(84vw, 340px);
+    --gap: 14px;
+    grid-template-columns: repeat(var(--column-count), var(--col-min));
+  }
+  .column {
+    scroll-snap-align: start;
+  }
+  body.is-dragging .board-scroller {
+    scroll-snap-type: none;
+  }
+}

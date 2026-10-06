@@ -1,0 +1,381 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
+
+.modal-editor .editor {
+  max-height: calc(100dvh - 48px);
+}
+
+@media (max-width: 640px) {
+  .modal-editor .editor {
+    max-height: calc(100dvh - 16px - env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 14px 10px 20px;
+}
+
+.editor-heading {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+}
+
+.editor-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 4px 20px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field-label {
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+legend.field-label {
+  margin-bottom: 6px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.input {
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+textarea.input {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.input-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.field-error {
+  color: var(--danger);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.date-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.segment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.segment input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segment:hover {
+  border-color: var(--ink-soft);
+}
+
+.segment:has(input:checked) {
+  border-color: var(--p);
+  background: color-mix(in srgb, var(--p) 12%, transparent);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--p);
+}
+
+.segment:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 4px 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
+  background: var(--paper);
+  cursor: text;
+}
+
+.tag-input:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.tag-input input {
+  flex: 1;
+  min-width: 110px;
+  height: 28px;
+  padding: 0 4px;
+  border: 0;
+  outline: none;
+  background: none;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 26px;
+  padding: 0 2px 0 9px;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.tag-remove {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+}
+
+.tag-remove:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.checklist-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.checklist-progress span {
+  display: block;
+  height: 100%;
+  background: var(--ok);
+  transition: width 0.2s ease-out;
+}
+
+.checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checklist-items li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 2px 2px 4px;
+  border-radius: 6px;
+}
+
+.checklist-items li:hover {
+  background: var(--hover);
+}
+
+.checklist-items input[type='checkbox'] {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--ok);
+}
+
+.checklist-text {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  padding: 0 6px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  background: none;
+}
+
+.checklist-text:focus {
+  border-color: var(--accent);
+  background: var(--paper);
+}
+
+.checklist-items li[data-done] .checklist-text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.checklist-new {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-control);
+  outline: none;
+  background: none;
+}
+
+.checklist-new:focus {
+  border-style: solid;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.editor-timestamps {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.editor-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.editor-footer .btn-danger {
+  margin-right: auto;
+  padding-left: 8px;
+}
+
+.editor-hint {
+  margin-right: 6px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.editor-footer .btn-danger + .editor-hint {
+  margin-left: 0;
+}
+
+.editor-footer > .editor-hint:first-child {
+  margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+  .segmented {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .editor-hint {
+    display: none;
+  }
+  .editor-footer .btn:not(.btn-danger) {
+    flex: 1;
+  }
+}
+
+/* Shortcuts dialog */
+.shortcuts {
+  padding-bottom: 18px;
+}
+
+.shortcut-list {
+  margin: 0;
+  padding: 0 20px;
+}
+
+.shortcut-row {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+.shortcut-row dt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.shortcut-row dt kbd + kbd {
+  margin-left: 0;
+}
+
+.shortcut-row dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.shortcuts-note {
+  margin: 12px 20px 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}

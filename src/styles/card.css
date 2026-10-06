@@ -1,0 +1,141 @@
+.card-item {
+  flex: none;
+  list-style: none;
+}
+
+.card-item[data-drag-source] {
+  display: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+  padding: 12px 12px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: border-color 0.12s, transform 0.12s;
+}
+
+.card:hover {
+  border-color: var(--line-strong);
+}
+
+.card[data-pressing] {
+  transform: scale(0.97);
+}
+
+/* A short red edge makes urgent work easy to spot when scanning a column. */
+.card[data-priority='urgent']::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -1px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--p-urgent);
+}
+
+.card[data-done] .card-title {
+  color: var(--ink-soft);
+}
+
+.card[data-done] .priority-glyph {
+  opacity: 0.55;
+}
+
+.card[data-done]::before {
+  display: none;
+}
+
+.card-item[data-just-moved] .card {
+  animation: card-settle 0.7s ease-out;
+}
+
+@keyframes card-settle {
+  0% {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+}
+
+.card.is-lifted {
+  box-shadow: var(--shadow-lift);
+  border-color: var(--line-strong);
+  transform: rotate(-1.6deg);
+  animation: card-lift 0.14s ease-out;
+}
+
+@keyframes card-lift {
+  from {
+    transform: rotate(0) scale(0.98);
+    box-shadow: none;
+  }
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.card-priority {
+  display: flex;
+  flex: none;
+  padding-top: 4px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 550;
+  line-height: 1.36;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta-due[data-status='overdue'] {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.meta-due[data-status='soon'] {
+  color: var(--warn-ink);
+  font-weight: 600;
+}
+
+.meta-checklist[data-complete] {
+  color: var(--ok);
+}
+
+.meta-tag {
+  color: var(--ink-soft);
+}

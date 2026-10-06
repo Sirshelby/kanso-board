@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Kanso is a fast, keyboard-friendly task board built with React." />
+    <meta name="theme-color" content="#EBEEEA" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121917" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Kanso task board</title>
+    <script>
+      // Apply a saved theme before first paint so there is no flash of the wrong theme.
+      try {
+        var saved = localStorage.getItem('kanso:theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "kanso-board",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A fast, keyboard-friendly Kanban board built with React, with no UI libraries.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fontsource-variable/schibsted-grotesk": "^5.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.3.0",
+    "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^30.1.0",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0"
+  }
+}
